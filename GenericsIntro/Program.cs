@@ -12,10 +12,14 @@ namespace GenericsIntro
             isimler.Add("Enes");
             isimler.Add("Zana");
             isimler.Add("Zerya");
-            //foreach (var item in isimler)
-            //{
-            //    Console.WriteLine(item);
-            //}
+
+
+            foreach (var item in isimler.Items)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(isimler.Length+" Kişi");
         }
     }
 }
