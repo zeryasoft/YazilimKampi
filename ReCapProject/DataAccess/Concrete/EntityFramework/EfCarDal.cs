@@ -15,20 +15,21 @@ namespace DataAccess.Concrete.EntityFramework
         List<Car> _cars;
         public void Add(Car entity)
         {
-            using (CarsDBContext context=new CarsDBContext())
+            using (CarsDBContext context = new CarsDBContext())
             {
-                if (entity.Description.Length>2 && Convert.ToDecimal(entity.DailyPrice.ToString())>0)
-                {
-                    var addedEntity = context.Entry(entity);
-                    addedEntity.State = EntityState.Added;
-                    context.SaveChanges();
-                }
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
             }   
         }
 
         public void Delete(Car car)
         {
-            throw new NotImplementedException();
+            using (CarsDBContext context=new CarsDBContext())
+            {
+                context.Cars.Remove(context.Cars.SingleOrDefault(c => c.CarId == car.CarId));
+                context.SaveChanges();
+            }
         }
 
         public Car Get(Expression<Func<Car, bool>> filter)
@@ -44,19 +45,34 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
+        public Car GetCarsByBrandId(int brandId)
         {
-            throw new NotImplementedException();
+            using (CarsDBContext context=new CarsDBContext())
+            {
+                return context.Cars.SingleOrDefault(c => c.BrandId == brandId);
+            }
         }
 
-        public List<Car> GetCarsByColorId(int colorId)
+        public Car GetCarsByColorId(int colorId)
         {
-            throw new NotImplementedException();
+            using (CarsDBContext context = new CarsDBContext())
+            {
+                return context.Cars.SingleOrDefault(c => c.ColorId == colorId);
+            }
         }
 
         public void Update(Car car)
         {
-            throw new NotImplementedException();
+            using (CarsDBContext context = new CarsDBContext())
+            {
+                var carToUpdate = context.Cars.SingleOrDefault(c => c.CarId == car.CarId);
+                carToUpdate.BrandId = car.BrandId;
+                carToUpdate.ColorId = car.ColorId;
+                carToUpdate.DailyPrice = car.DailyPrice;
+                carToUpdate.Description = car.Description;
+                carToUpdate.ModelYear = car.ModelYear;
+                context.SaveChanges();
+            }
         }
     }
 }

@@ -12,8 +12,8 @@ namespace DataAccess.Abstract
     {
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter);
-        List<T> GetCarsByBrandId(int brandId);
-        List<T> GetCarsByColorId(int colorId);
+        T GetCarsByBrandId(int brandId);
+        T GetCarsByColorId(int colorId);
         void Add(T car);
         void Update(T car);
         void Delete(T car);

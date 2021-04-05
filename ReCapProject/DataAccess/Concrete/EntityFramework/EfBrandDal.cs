@@ -31,12 +31,12 @@ namespace DataAccess.Concrete.EntityFramework
             throw new NotImplementedException();
         }
 
-        public List<Brand> GetCarsByBrandId(int brandId)
+        public Brand GetCarsByBrandId(int brandId)
         {
             throw new NotImplementedException();
         }
 
-        public List<Brand> GetCarsByColorId(int colorId)
+        public Brand GetCarsByColorId(int colorId)
         {
             throw new NotImplementedException();
         }

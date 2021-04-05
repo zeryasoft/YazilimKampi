@@ -20,7 +20,15 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            _carDal.Add(car);
+            if (car.Description.Length > 2 && Convert.ToDecimal(car.DailyPrice.ToString()) > 0)
+            {
+                _carDal.Add(car);
+            }
+        }
+
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
         }
 
         public List<Car> GetAll()
@@ -28,14 +36,19 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public Car GetCarsByBrandId(int id)
         {
-            return _carDal.GetAll(c=>c.BrandId==id);
+            return _carDal.GetCarsByBrandId(id);
         }
 
-        public List<Car> GetCarsByColorId(int id)
+        public Car GetCarsByColorId(int id)
         {
-            return _carDal.GetAll(c => c.ColorId == id);
+            return _carDal.GetCarsByColorId(id);
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
         }
     }
 }
