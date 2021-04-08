@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Core.DataAccess.EntityFramework
+namespace Core.DataAccess.IEntityFramework
 {
-    public class EfEntityRepositoryBase<TEntity,TContext>:IEntityRepository<TEntity>
-        where TEntity:class,IEntity,new()
-        where TContext:DbContext,new()
+    public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
+        where TEntity : class, IEntity, new()
+        where TContext : DbContext, new()
     {
+
         public void Add(TEntity entity)
         {
             using (TContext context = new TContext())
@@ -21,6 +22,7 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
+
         public void Delete(TEntity entity)
         {
             using (TContext context = new TContext())
@@ -29,7 +31,13 @@ namespace Core.DataAccess.EntityFramework
                 deletedEntity.State = EntityState.Deleted;
                 context.SaveChanges();
             }
+            //using (TContext context = new TContext())
+            //{
+            //    context.Cars.Remove(context.Cars.SingleOrDefault(c => c.CarId == car.CarId));
+            //    context.SaveChanges();
+            //}
         }
+
 
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
@@ -39,6 +47,7 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
+
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (TContext context = new TContext())
@@ -46,6 +55,23 @@ namespace Core.DataAccess.EntityFramework
                 return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
             }
         }
+
+
+        //public TEntity GetCarsByBrandId(int brandId)
+        //{
+        //    using (TContext context = new TContext())
+        //    {
+        //        return context.Cars.SingleOrDefault(c => c.BrandId == brandId);
+        //    }
+        //}
+
+        //public TEntity GetCarsByColorId(int colorId)
+        //{
+        //    using (TContext context = new TContext())
+        //    {
+        //        return context.Cars.SingleOrDefault(c => c.ColorId == colorId);
+        //    }
+        //}
 
         public void Update(TEntity entity)
         {
@@ -55,6 +81,16 @@ namespace Core.DataAccess.EntityFramework
                 updatedEntity.State = EntityState.Modified;
                 context.SaveChanges();
             }
+            //using (TContext context = new TContext())
+            //{
+            //    var carToUpdate = context.Cars.SingleOrDefault(c => c.CarId == car.CarId);
+            //    carToUpdate.BrandId = car.BrandId;
+            //    carToUpdate.ColorId = car.ColorId;
+            //    carToUpdate.DailyPrice = car.DailyPrice;
+            //    carToUpdate.Description = car.Description;
+            //    carToUpdate.ModelYear = car.ModelYear;
+            //    context.SaveChanges();
+            //}
         }
     }
 }
