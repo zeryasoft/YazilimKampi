@@ -11,7 +11,31 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             //CarUpdateTest();
+            //CarAddTest();
+            //CarDeleteTest();
             CarDetailTest();
+        }
+
+        private static void CarDeleteTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Delete(new Car
+            {
+                CarId = 1004
+            });
+        }
+
+        private static void CarAddTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Add(new Car
+            {
+                BrandId = 2,
+                ColorId = 1,
+                DailyPrice = 60000M,
+                Description = "Temiz Araba",
+                ModelYear = 2011
+            });
         }
 
         private static void CarDetailTest()
@@ -28,18 +52,13 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
             carManager.Update(new Car
             {
-                CarId = 6,
-                BrandId = 3,
+                CarId = 1004,
+                BrandId = 2,
                 ColorId = 1,
-                DailyPrice = 10000M,
-                Description = "Getz",
+                DailyPrice = 65000M,
+                Description = "Polo",
                 ModelYear = 2011
             });
-
-            foreach (var car in carManager.GetAll())
-            {
-                Console.WriteLine(car.Description + " " + car.ModelYear);
-            }
         }
     }
 }
