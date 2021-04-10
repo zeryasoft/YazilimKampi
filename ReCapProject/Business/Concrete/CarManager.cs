@@ -42,15 +42,15 @@ namespace Business.Concrete
             return _carDal.GetCarDetails();
         }
 
-        //public Car GetCarsByBrandId(int id)
-        //{
-        //    return _carDal.GetCarsByBrandId(id);
-        //}
+        public Car GetCarsByBrandId(int id)
+        {
+            return _carDal.GetCarsByBrandId(id);
+        }
 
-        //public Car GetCarsByColorId(int id)
-        //{
-        //    return _carDal.GetCarsByColorId(id);
-        //}
+        public Car GetCarsByColorId(int id)
+        {
+            return _carDal.GetCarsByColorId(id);
+        }
 
         public void Update(Car car)
         {

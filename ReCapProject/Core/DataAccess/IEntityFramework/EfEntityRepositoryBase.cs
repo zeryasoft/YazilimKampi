@@ -56,7 +56,10 @@ namespace Core.DataAccess.IEntityFramework
             }
         }
 
-
+        public TEntity GetCarsByBrandId(int brandId)
+        {
+            throw new NotImplementedException();
+        }
         //public TEntity GetCarsByBrandId(int brandId)
         //{
         //    using (TContext context = new TContext())
@@ -64,6 +67,11 @@ namespace Core.DataAccess.IEntityFramework
         //        return context.Cars.SingleOrDefault(c => c.BrandId == brandId);
         //    }
         //}
+
+        public TEntity GetCarsByColorId(int colorId)
+        {
+            throw new NotImplementedException();
+        }
 
         //public TEntity GetCarsByColorId(int colorId)
         //{

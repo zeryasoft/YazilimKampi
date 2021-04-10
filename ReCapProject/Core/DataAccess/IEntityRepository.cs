@@ -12,8 +12,8 @@ namespace Core.DataAccess
     {
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter);
-        //T GetCarsByBrandId(int brandId);
-        //T GetCarsByColorId(int colorId);
+        T GetCarsByBrandId(int brandId);
+        T GetCarsByColorId(int colorId);
         void Add(T car);
         void Update(T car);
         void Delete(T car);
