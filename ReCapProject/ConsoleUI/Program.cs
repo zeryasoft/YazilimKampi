@@ -14,11 +14,43 @@ namespace ConsoleUI
             //CarAddTest();
             //CarDeleteTest();
             //CarDetailTest();
-            GetCarsByBrandIdAndColorID();
-
+            //GetCarsByBrandIdAndColorIDTest();
+            //UserAddTest();
+            //CustomerAddTest();
+            RentalAddTest();
+            //RentalUpdateTest();
         }
 
-        private static void GetCarsByBrandIdAndColorID()
+        private static void RentalUpdateTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rentalManager.Update(new Rental { RentalId = 1, CarId = 1, CustomerId = 1, RentDate = DateTime.Now.ToShortDateString(), ReturnDate = DateTime.Now.ToShortDateString() });
+        }
+
+        private static void RentalAddTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Console.WriteLine(rentalManager.Add(new Rental { CarId = 2, CustomerId = 1, RentDate = DateTime.Now.ToShortDateString() }).Message);
+        }
+
+        private static void CustomerAddTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            Console.WriteLine(customerManager.Add(new Customer { UserId = 2, CompanyName = "Turkcell" }).Message);
+        }
+
+        private static void UserAddTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(new User { UserId = 2, FirstName = "Enes", LastName = "KOÇ", Email = "enes@gmail.com", Password = "1234" });
+
+            foreach (var user in userManager.GetAll().Data)
+            {
+                Console.WriteLine(user.FirstName);
+            }
+        }
+
+        private static void GetCarsByBrandIdAndColorIDTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
             Console.WriteLine("By BrandId\n"+carManager.GetCarsByBrandId(2).Data.Description);
