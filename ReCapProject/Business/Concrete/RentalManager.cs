@@ -43,20 +43,25 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(Messages.RentalsListed);
         }
 
-        public IDataResult<List<Rental>> GetRentalsByCarId(int id)
+        public IDataResult<List<Rental>> GetRentalsByUserId(int userId)
         {
-            return new SuccessDataResult<List<Rental>>(_rentDal.GetAll(p => p.CarId == id),Messages.RentalsListed);
+            return new SuccessDataResult<List<Rental>>(_rentDal.GetAll(p => p.CarId == userId),Messages.RentalsListed);
         }
 
-        public IDataResult<List<Rental>> GetRentalsByCustomerId(int id)
+        public IDataResult<List<Rental>> GetRentalsByCustomerId(int customerId)
         {
-            return new SuccessDataResult<List<Rental>>(_rentDal.GetAll(p => p.CustomerId == id), Messages.RentalsListed);
+            return new SuccessDataResult<List<Rental>>(_rentDal.GetAll(p => p.CustomerId == customerId), Messages.RentalsListed);
         }
 
         public IResult Update(Rental rental)
         {
             _rentDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
+        }
+
+        public IDataResult<Rental> GetById(int rentalId)
+        {
+            return new SuccessDataResult<Rental>(_rentDal.Get(r => r.RentalId == rentalId));
         }
     }
 }
