@@ -33,7 +33,7 @@ namespace Business.Concrete
         public IResult Add(Product product)
         {
             //business codes
-            IResult result=BusinessRules.Run(CheckIfCategoryProductCountOfCategoryCorrect(product.CategoryId), CheckIfProductNameExists(product.ProductName), CheckIfCategoryLimitExceed());
+            IResult result=BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfProductNameExists(product.ProductName), CheckIfCategoryLimitExceed());
             if (result!=null)
             {
                 return result;
@@ -42,7 +42,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);           
         }
 
-        private IResult CheckIfCategoryProductCountOfCategoryCorrect(int categoryId)
+        private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
             //select count(*) from products where categoryId=1 gibi
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
