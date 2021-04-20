@@ -48,7 +48,7 @@ namespace Business.Concrete
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
             if (result >= 10)
             {
-                return new ErrorResult(Messages.ProdutCountofCategoryError);
+                return new ErrorResult(Messages.ProductCountofCategoryError);
             }
             return new SuccessResult();
         }
