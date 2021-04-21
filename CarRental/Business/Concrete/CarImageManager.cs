@@ -30,7 +30,7 @@ namespace Business.Concrete
         public IResult Add(IFormFile file, CarImage image)
         {
             IResult result = BusinessRules.Run(CheckIfCarImageCountCorrect(image.CarId));
-            if (result != null)
+            if (result == null)
             {
                 return result;
             }
