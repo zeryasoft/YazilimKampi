@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Utilities.Security.JWT
 {
@@ -21,7 +19,7 @@ namespace Core.Utilities.Security.JWT
         public JwtHelper(IConfiguration configuration)
         {
             Configuration = configuration;
-            _tokenOptions = (TokenOptions)Configuration.GetSection("TokenOptions").GetChildren();
+            _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
         }
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)

@@ -4,10 +4,8 @@ using Core.Extensions;
 using Core.Utilities.Interceptors;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Core.Utilities.IoC;
 
 namespace Business.BusinessAspects.Autofac
 {
