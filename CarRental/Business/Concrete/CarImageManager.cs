@@ -12,8 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -83,33 +81,36 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ImageDeleted);
         }
 
+
+        [ValidationAspect(typeof(CarImageValidator))]
+        public IDataResult<List<CarImage>> GetAll()
+        {
+            return new SuccessDataResult<List<CarImage>>(_imageDal.GetAll(), Messages.ImagesListed);
+        }
+
         [ValidationAspect(typeof(CarImageValidator))]
         public IDataResult<CarImage> Get(int Id)
         {
             return new SuccessDataResult<CarImage>(_imageDal.Get(p=>p.CarId==Id));
         }
 
+        [ValidationAspect(typeof(CarImageValidator))]
         public IDataResult<List<CarImage>> GetById(int carId)
         {
-            throw new NotImplementedException();
-        }
-
-        [ValidationAspect(typeof(CarValidator))]
-        public IDataResult<List<CarImage>> GetImagesByCarId(int carId)
-        {
-            IResult result = BusinessRules.Run(CheckIfCarImageNull(carId));
-            if (result != null)
-            {
-                return new ErrorDataResult<List<CarImage>>(result.Message);
-            }
-            return new SuccessDataResult<List<CarImage>>(CheckIfCarImageNull(carId).Data);
+            return new SuccessDataResult<List<CarImage>>(_imageDal.GetAll(c => c.CarId == carId),Messages.ImagesListed);
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
-        public IDataResult<List<CarImage>> GetAll()
+        public IDataResult<List<CarImage>> GetImagesByCarId(int carId)
         {
-            return new SuccessDataResult<List<CarImage>>(_imageDal.GetAll(),Messages.ImagesListed);
+            IResult result = BusinessRules.Run(CheckIfCarImageNull(carId));
+            if (result == null)
+            {
+                return new ErrorDataResult<List<CarImage>>(result.Message);
+            }
+            return new SuccessDataResult<List<CarImage>>(CheckIfCarImageNull(carId).Data,Messages.ImagesListed);
         }
+
 
         private IDataResult<List<CarImage>> CheckIfCarImageNull(int carId)
         {
