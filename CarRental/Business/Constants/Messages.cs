@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,11 +24,18 @@ namespace Business.Constants
         public static string RentalDeleted = "Kiralanan Araba Sistemden Silindi";
         public static string RentalsListed = "Kiralanan Araçlar Listelendi";
         public static string RentalReturnDateInvalid = "Kiralanmaya Çalışılan Araç Daha Önce Kiraya Verildi Henüz Teslim Alınmadı";
-        internal static string CarImageAdded="Araba Resimleri Eklendi";
-        internal static string ImagesListed="Araba Resimleri Listelendi";
-        internal static string ImageDeleted="Araba Resmi Başarıyla Silindi";
-        internal static string CarImageUpdated="Araba resmi Başarıyla Güncellendi";
-        internal static string ImageNotFound="Silinecek Resim Bulunamadı";
-        internal static string ImageLimitExceeded= "Bir Arabaya Ait resim Sayısı Aşıldığı İçin Yeni Resim Eklenemiyor";
+        public static string CarImageAdded="Araba Resimleri Eklendi";
+        public static string ImagesListed="Araba Resimleri Listelendi";
+        public static string ImageDeleted="Araba Resmi Başarıyla Silindi";
+        public static string CarImageUpdated="Araba resmi Başarıyla Güncellendi";
+        public static string ImageNotFound="Silinecek Resim Bulunamadı";
+        public static string ImageLimitExceeded= "Bir Arabaya Ait resim Sayısı Aşıldığı İçin Yeni Resim Eklenemiyor";
+        public static string AuthorizationDenied="Erişim Engellendi";
+        public static string AccessTokenCreated="Token Oluşturuldu";
+        public static string UserRegistered="Kullanıcı Kaydı Gerçekleşti";
+        public static string UserNotFound="Kullanıcı Bulunamadı";
+        public static string PasswordError="Şifre Hatası";
+        public static string SuccessfulLogin="Başarılı Giriş";
+        public static string UserAlreadyExists="Girilen Kullanıcı Mevcut";
     }
 }
