@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,5 +38,7 @@ namespace Business.Constants
         public static string PasswordError="Şifre Hatası";
         public static string SuccessfulLogin="Başarılı Giriş";
         public static string UserAlreadyExists="Girilen Kullanıcı Mevcut";
+        public static string ColorsListed = "Renkler Listelendi";
+        internal static string BrandListed= "Markalar Listelendi";
     }
 }

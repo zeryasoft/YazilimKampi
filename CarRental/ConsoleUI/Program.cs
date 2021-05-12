@@ -28,7 +28,18 @@ namespace ConsoleUI
             //    Date = DateTime.Now,
             //    ImagePath = ""
             //});
+            
+            //gelAllColor();
 
+        }
+
+        private static void gelAllColor()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            foreach (var item in colorManager.GetAll().Data)
+            {
+                Console.WriteLine(item.ColorName);
+            }
         }
 
         private static void RentalUpdateTest()

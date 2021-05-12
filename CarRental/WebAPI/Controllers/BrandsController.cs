@@ -11,30 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RentalsController : ControllerBase
+    public class BrandsController : ControllerBase
     {
-        IRentalService _rentalService;
+        IBrandService _brandService;
 
-        public RentalsController(IRentalService rentalService)
+        public BrandsController(IBrandService brandService)
         {
-            _rentalService = rentalService;
+            _brandService = brandService;
         }
 
         [HttpGet("getAll")]
         public IActionResult GetAll()
         {
-            var result = _rentalService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getRentalDetails")]
-        public IActionResult GetCarDetails()
-        {
-            var result = _rentalService.GetRentalDetails();
+            var result = _brandService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -43,9 +32,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int carId)
+        public IActionResult GetById(int brandId)
         {
-            var result = _rentalService.GetById(carId);
+            var result = _brandService.GetById(brandId);
             if (result.Success)
             {
                 return Ok(result);
@@ -54,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Rental rental)
+        public IActionResult Add(Brand brand)
         {
-            var result = _rentalService.Add(rental);
+            var result = _brandService.Add(brand);
             if (result.Success)
             {
                 return Ok(result);
