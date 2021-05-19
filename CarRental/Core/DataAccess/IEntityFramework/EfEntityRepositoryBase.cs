@@ -51,12 +51,6 @@ namespace Core.DataAccess.IEntityFramework
             }
         }
 
-        public TEntity GetCarsByBrandId(int brandId)
-        {
-            throw new NotImplementedException();
-        }
-        
-
         public TEntity GetCarsByColorId(int colorId)
         {
             throw new NotImplementedException();

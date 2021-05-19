@@ -76,7 +76,17 @@ namespace DataAccess.Concrete
             throw new NotImplementedException();
         }
 
-        public Car GetCarsByBrandId(int brandId)
+        public List<CarDetailDto> GetCarDetailsByBrandId(int brandId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetCarDetailsByCarId(int carId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetCarDetailsByColorId(int colorId)
         {
             throw new NotImplementedException();
         }

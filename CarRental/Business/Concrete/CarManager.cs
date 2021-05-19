@@ -77,15 +77,20 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(),Messages.CarsListed);
         }
 
-        public IDataResult<Car> GetCarsByBrandId(int id)
+        public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(p => p.BrandId == id));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByBrandId(brandId),Messages.CarsListed);
+        }
+
+
+        IDataResult<List<CarDetailDto>> ICarService.GetCarsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByColorId(colorId), Messages.CarsListed);
         }
 
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p=>p.ColorId==id));
-            //return new SuccessDataResult<Car>(_carDal.GetCarsByColorId(id));
         }
 
         [CacheRemoveAspect("ICarService.Get")]
@@ -94,6 +99,11 @@ namespace Business.Concrete
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
+        }
+
+        IDataResult<List<CarDetailDto>> ICarService.GetById(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByCarId(carId), Messages.CarsListed);
         }
     }
 }
