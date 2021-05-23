@@ -15,7 +15,6 @@ namespace ConsoleUI
             //CarAddTest();
             //CarDeleteTest();
             //CarDetailTest();
-            //GetCarsByBrandIdAndColorIDTest();
             //UserAddTest();
             //CustomerAddTest();
             //RentalAddTest();
@@ -68,17 +67,6 @@ namespace ConsoleUI
             foreach (var user in userManager.GetAll().Data)
             {
                 Console.WriteLine(user.FirstName);
-            }
-        }
-
-        private static void GetCarsByBrandIdAndColorIDTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            Console.WriteLine("By BrandId\n"+carManager.GetCarsByBrandId(2).Data.Description);
-            Console.WriteLine("By ColorId");
-            foreach (var car in carManager.GetCarsByColorId(1).Data)
-            {
-                Console.WriteLine(car.Description);
             }
         }
 

@@ -12,9 +12,6 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -40,6 +37,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarAdded);
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
+        [ValidationAspect(typeof(CarValidator))]
+        public IResult Update(Car car)
+        {
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
+        }
+
         [TransactionScopeAspect]
         public IResult AddTransactionalTest(Car car)
         {
@@ -51,7 +56,6 @@ namespace Business.Concrete
             Add(car);
             return null;
         }
-
 
         public IResult Delete(Car car)
         {
@@ -82,26 +86,12 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByBrandId(brandId),Messages.CarsListed);
         }
 
-
-        IDataResult<List<CarDetailDto>> ICarService.GetCarsByColorId(int colorId)
+        public IDataResult<List<CarDetailDto>> GetCarsByColorId(int colorId)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByColorId(colorId), Messages.CarsListed);
         }
 
-        public IDataResult<List<Car>> GetCarsByColorId(int id)
-        {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p=>p.ColorId==id));
-        }
-
-        [CacheRemoveAspect("ICarService.Get")]
-        [ValidationAspect(typeof(CarValidator))]
-        public IResult Update(Car car)
-        {
-            _carDal.Update(car);
-            return new SuccessResult(Messages.CarUpdated);
-        }
-
-        IDataResult<List<CarDetailDto>> ICarService.GetById(int carId)
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByCarId(int carId)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByCarId(carId), Messages.CarsListed);
         }

@@ -7,6 +7,7 @@ using Core.Utilities.Helper;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -81,7 +82,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ImageDeleted);
         }
 
-
         [ValidationAspect(typeof(CarImageValidator))]
         public IDataResult<List<CarImage>> GetAll()
         {
@@ -110,7 +110,6 @@ namespace Business.Concrete
             }
             return new SuccessDataResult<List<CarImage>>(CheckIfCarImageNull(carId).Data,Messages.ImagesListed);
         }
-
 
         private IDataResult<List<CarImage>> CheckIfCarImageNull(int carId)
         {
@@ -157,6 +156,9 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-
+        IDataResult<List<CarDetailDto>> ICarImageService.GetImagesByCarIdDto(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_imageDal.GetCarImageDetailsByCarIdDto(carId), Messages.CarsListed);
+        }
     }
 }
